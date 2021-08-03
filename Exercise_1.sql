@@ -64,11 +64,29 @@ SELECT FirstName
 
 
 -- 1-8
-
+SELECT BusinessEntityID
+	, CASE 
+		WHEN CommissionPct <= 0.00 THEN 'Band 0'
+		WHEN CommissionPct <= 0.01 THEN 'Band 1'
+		WHEN CommissionPct <= 0.015 THEN 'Band 2'
+		ELSE 'Band 3'
+	END AS 'Commission Band'
+	FROM Sales.SalesPerson;
 
 
 -- 1-9
+DECLARE @id int;
 
+SELECT @id = BusinessEntityID
+	FROM Person.Person
+	WHERE FirstName = 'Ruth' 
+		AND LastName = 'Ellerbrock' 
+		AND PersonType = 'EM';
+
+EXEC dbo.uspGetEmployeeManagers @BusinessEntityID = @id;
 
 
 -- 1-10
+SELECT TOP 1 ProductID
+	FROM Production.Product
+	ORDER BY dbo.ufnGetStock(ProductID) DESC;
