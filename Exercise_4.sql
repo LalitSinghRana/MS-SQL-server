@@ -23,4 +23,5 @@ RETURN
 --TEST
 --Copy paste below in new query window
 
+
 --SELECT * FROM Sales.ufn_myFunc(43659, 'GBP', '2011-05-31'); 
