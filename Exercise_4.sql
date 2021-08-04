@@ -3,6 +3,8 @@ USE AdventureWorks2017;
 IF OBJECT_ID (N'Sales.ufn_myFunc', N'IF') IS NOT NULL  
     DROP FUNCTION Sales.ufn_myFunc;  
 GO  
+
+
 CREATE FUNCTION Sales.ufn_myFunc(@SalesID int, @CurrencyCode varchar(3), @Date date)
 RETURNS TABLE
 AS 
@@ -18,10 +20,8 @@ RETURN
 		FROM Sales.SalesOrderDetail AS sod
 		WHERE sod.SalesOrderID = @SalesID
 ); 
+GO
 
 
---TEST
---Copy paste below in new query window
-
-
---SELECT * FROM Sales.ufn_myFunc(43659, 'GBP', '2011-05-31'); 
+--Sample Test case
+SELECT * FROM Sales.ufn_myFunc(43659, 'GBP', '2011-05-31'); 
